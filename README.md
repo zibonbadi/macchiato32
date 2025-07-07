@@ -34,6 +34,8 @@ void app_main(void){
 }
 ```
 
+Additionally, we also provide an example application under `examples/demo` to help you get started.
+
 
 API Reference
 =============
