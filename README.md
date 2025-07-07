@@ -1,5 +1,5 @@
-ESP32 Macchiato32
-================
+Macchiato32 - A Framework for ESP32-based game consoles
+=======================================================
 
 Install
 =======
@@ -14,7 +14,7 @@ Before you start your project, use `idf.py menuconfig` to specify the hardware y
 After setup is complete, you can start coding with very little setup required:
 
 ```C
-#include "esp32_game_driver.h"
+#include "macchiato32/m32.h"
 
 void app_main(void){
 
