@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.1-99-gec89c545" orientation="orthogonal" renderorder="right-down" width="4" height="4" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
+ <tileset firstgid="1" name="Tileset" tilewidth="16" tileheight="16" tilecount="64" columns="1">
+  <image source="tileset.png" trans="00ffff" width="16" height="1024"/>
+ </tileset>
+ <layer id="1" name="Landscape" width="4" height="4">
+  <data encoding="csv">
+2,1073741826,2,3221225474,
+4,2147483651,4,4,
+1073741828,2147483652,4,3,
+1073741827,1073741828,4,4
+</data>
+ </layer>
+</map>

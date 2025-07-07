@@ -1,0 +1,137 @@
+menu "Macchiato32 options"
+    config M32_USE_SPI
+        bool "SPI protocol support"
+        default y
+    config M32_USE_EMULATED_TILE_MAPPING
+        bool "Emulated Tile Mapping support"
+        default y
+        help
+            Macchiato32's graphic system is not strictly bound to support tile mapping.
+            Disable this option to exclude the built-in tile mapping helpers.
+    menu "General SPI settings"
+        visible if M32_USE_SPI
+        # Use SPI2 by default
+        config M32_SPI_PIN_SCLK
+            int "SPI Clock pin"
+            depends on M32_USE_SPI
+            default 0
+        config M32_SPI_PIN_MOSI
+            int "SPI MOSI/Data pin"
+            depends on M32_USE_SPI
+            default 20  
+        config M32_SPI_PIN_MISO
+            int "SPI MISO/Data pin"
+            depends on M32_USE_SPI
+            default 21  
+    endmenu
+    menu "Display Options"
+        config M32_DISPLAY_WIDTH
+            int "Display width (pixels)"
+            default 240
+        config M32_DISPLAY_HEIGHT
+            int "Display height (pixels)"
+            default 240
+        choice
+            prompt "Display Type"
+            default M32_DISPLAY_TYPE_ST7789
+            help
+                Select which type of Display your console uses.
+                Only one Display may be used at a time.
+            config M32_DISPLAY_TYPE_ST7789
+                bool "Sitronix ST7789-based TFT display"
+                depends on M32_USE_SPI
+            config M32_DISPLAY_TYPE_WS2812
+                bool "Worldsemi WS2812-based LED display"
+                depends on M32_USE_SPI
+        endchoice
+        menu "ST7789 options"
+            visible if M32_DISPLAY_TYPE_ST7789
+            
+            config M32_DISPLAY_PIN_SPI_CS
+                int "SPI Chip Select pin"
+                depends on M32_USE_SPI
+                default 1
+            config M32_DISPLAY_PIN_DC
+                int "Data/Control (D/C) pin"
+                depends on M32_USE_SPI
+                default 2
+            config M32_DISPLAY_PIN_RST
+                int "Display reset pin"
+                depends on M32_USE_SPI
+                default 3
+            config M32_DISPLAY_PIN_BACKLIGHT
+                int "Display backlight pin"
+                depends on M32_USE_SPI
+                default 10
+            config M32_DISPLAY_PIXEL_CLOCK_HZ
+                int "Display pixel clock speed (Hz)"
+                depends on M32_USE_SPI
+                default 16000000
+            config M32_DISPLAY_USE_BACKLIGHT
+                bool "Use Display Backlight"
+                default y
+                help
+                    Disable this option if you control the backlight electrically.
+            config M32_DISPLAY_INVERT_COLOR 
+                bool "Invert display colors"
+                default n
+                help
+                    ST7789-based displays vary wildly depending on the manufacturer.
+                    Some displays need to be inverted before displaying correct colors.
+            choice M32_DISPLAY_ST7789_DRAW_ROUTINE
+                prompt "Display draw routine"
+                default M32_DISPLAY_ST7789_BITMAP_DRAW
+                help
+                    Decide whether Macchiato32 sends image data via Espressif's
+                    LCD driver or transmits ST7789 instructions directly.
+
+                    Depending on your game's render system, either
+                    may improve performance over the other.
+                    
+                    Only change this if you know what this means.
+                config M32_DISPLAY_ST7789_BITMAP_DRAW
+                    bool "Bitmap-based draw routine"
+                    help
+                        Display tiles are arranged linearly
+                        Pixels are sequenced per-tile.
+                config M32_DISPLAY_ST7789_CMD_DRAW
+                    bool "Instruction-based draw routine"
+                    help
+                        Linear pixel arrangement per-tile, but the tiles follow Adam7 interlacing
+            endchoice
+            config M32_DISPLAY_INTERLACE_LINE_HEIGHT
+                int "Interlace scanline height"
+                default 2
+                help
+                    Macchiato32 emulates interlacing to speed up the refresh rate.
+                    Set this to a number that can evenly divide M32_DISPLAY_HEIGHT.
+                    Thicker scanlines may improve FPS at the cost of visual fidelity.
+        endmenu
+        menu "WS2812 options"
+            visible if M32_DISPLAY_TYPE_WS2812
+            config M32_DISPLAY_WS2812_TILING
+                bool "Enable WS2812 display tiling"
+                depends on M32_USE_SPI
+                default 16
+                help
+                    Some vendors offer prefab WS2812 matrices with linear interlacing per-matrix.
+                    Use this option if your display is based on daisy chaining these tiles together.
+            config M32_DISPLAY_WS2812_TILE_SIZE
+                int "WS2812 display tile size"
+                depends on M32_DISPLAY_TYPE_WS2812_TILING
+                default 16
+            choice M32_DISPLAY_WS2812_TILE_INTERLACING
+                prompt "Display tile interlacing"
+                config M32_DISPLAY_WS2812_TILE_INTERLACING_LINEAR
+                    bool "Tile-linear interlacing"
+                    help
+                        Display tiles are arranged linearly
+                        Pixels are sequenced per-tile.
+                config M32_DISPLAY_WS2812_TILE_INTERLACING_ADAM7
+                    bool "Adam7 interlacing"
+                    help
+                        Linear pixel arrangement per-tile, but the tiles follow Adam7 interlacing
+            endchoice
+        endmenu
+    endmenu
+endmenu

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.1-99-gec89c545" orientation="orthogonal" renderorder="right-down" width="4" height="4" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="1">
+ <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16" tilecount="64" columns="1">
+  <image source="tileset.png" trans="00ffff" width="16" height="1024"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="4" height="4">
+  <data encoding="csv">
+3,2147483652,3221225475,4,
+1073741828,3221225475,3221225476,3,
+1073741827,2147483652,1073741827,1073741828,
+4,2147483651,3221225476,2147483651
+</data>
+ </layer>
+ <layer id="2" name="Clouds" width="4" height="4">
+  <data encoding="csv">
+5,2147483653,0,0,
+2147483655,7,0,0,
+0,0,2147483654,6,
+0,0,2147483655,7
+</data>
+ </layer>
+</map>
