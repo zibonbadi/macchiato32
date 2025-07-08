@@ -1,0 +1,16 @@
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo 
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Espressif IoT Development Framework (ESP-IDF)
+        uses: espressif/esp-idf-ci-action@v1
+        with:
+          # Test with demo program built for ESP32-C3
+          target: esp32c3
+          path: 'examples/demo'
+                
