@@ -119,9 +119,11 @@ static void load_scene_image(m32_graphic_t* displaybuf, m32_graphic_t* ball){
 
 void app_main(void){
 
-    /*  ======== ESP32 Macchiato32 demo ========
-     *              by Zibon Badi 
+    /*  ======== Macchiato32 demo ========
+     *            by Zibon Badi 
      *
+     *      Licensed under CC-BY-SA 4.0
+     * 
      * This Demo consists of four "scenes", which can be
      * switched between using a button attached to GPIO pin 4.
      *
