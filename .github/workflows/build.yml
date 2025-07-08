@@ -1,8 +1,15 @@
-name: Espressif IoT Development Framework (ESP-IDF)
-  # You may pin to the exact commit or the version.
-  # uses: espressif/esp-idf-ci-action@8cd22ae10042fadc37890e81e9988a9113e7b506
-  uses: espressif/esp-idf-ci-action@v1.1.0
-  with:
-    # ESP32 variant to build for
-    target: esp32c3
-          
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo 
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Espressif IoT Development Framework (ESP-IDF)
+        uses: espressif/esp-idf-ci-action@v1
+        with:
+          # ESP32 variant to build for
+          target: esp32c3
+                
