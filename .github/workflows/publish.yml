@@ -17,6 +17,8 @@ jobs:
         with:
           # API Token for the component registry
           api_token: ${{ secrets.IDF_COMPONENT_API_TOKEN }}
+          # Component name
+          name: "macchiato32"
           # Component namespace
           namespace: "zibonbadi"
           # Upload component for validation without creating a version in the registry.
