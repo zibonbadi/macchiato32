@@ -133,6 +133,9 @@ void app_main(void){
      * 4. A static image - rendered once and only displayed since.
      *    Used to benchmark the maximum possible framerate.
      *
+     *      All assets were compiled using M32Tool:
+     *      <https://github.com/zibonbadi/m32tool>
+     *
      * Default KConfig/menuconfig/sdkconfig settings:
      *
      *      // General Setup
