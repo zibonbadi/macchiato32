@@ -1,4 +1,6 @@
 ## IDF Component Manager Manifest File
+name: "macchiato32"
+namespace: "zibonbadi"
 version: "0.0.1"
 description: "Framework for ESP32-based game consoles"
 url: "https://github.com/zibonbadi/macchiato32"
