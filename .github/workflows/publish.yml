@@ -1,0 +1,23 @@
+on: 
+  push:
+    branches:
+      - main
+    tags:
+      - macchiato32-v*
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo 
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Upload Macchiato32 to component registry
+        uses: espressif/upload-components-ci-action@v1
+        with:
+          # API Token for the component registry
+          api_token: ${{ secrets.IDF_COMPONENT_API_TOKEN }}
+          # Component namespace
+          namespace: "zibonbadi"
+          # Upload component for validation without creating a version in the registry.
+          #dry_run: # optional
