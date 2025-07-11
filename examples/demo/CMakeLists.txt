@@ -3,7 +3,7 @@
 cmake_minimum_required(VERSION 3.16)
 
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
-project(esp32_game_driver_sample)
+project(macchiato32_demo)
 
 # Use SPIFFS to access Flash ROM using file handles
 spiffs_create_partition_image(rom assets/m32-native FLASH_IN_PROJECT)
