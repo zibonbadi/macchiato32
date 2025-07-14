@@ -1,6 +1,7 @@
 on: [push]
 jobs:
-  build:
+  build-demo:
+    name: "Build Demo"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo 
